@@ -3,13 +3,6 @@ class MovieModel {
 
   MovieModel({this.results});
 
-  // factory MovieModel.fromJson(List<dynamic> parsedJson) {
-  //   List<Result> results = new List<Result>();
-  //   results = parsedJson.map((i) => Result.fromJson(i)).toList();
-  //   return new MovieModel(
-  //     results: results,
-  //   );
-  // }
   factory MovieModel.fromJson(Map<String, dynamic> parsedJson) {
     var list = parsedJson['results'] as List;
     print(list.runtimeType);
@@ -19,15 +12,12 @@ class MovieModel {
 }
 
 class Result {
-  String posterPath;
-  String originalTitle;
+  final String posterPath;
+  final String originalTitle;
 
   Result({this.posterPath, this.originalTitle});
 
-  factory Result.fromJson(Map<String, dynamic> json) {
-    return new Result(
-      posterPath: json['poster_path'],
-      originalTitle: json['original_title'],
-    );
-  }
+  Result.fromJson(Map<String, dynamic> json)
+      : this.posterPath = json['poster_path'],
+        originalTitle = json['original_title'];
 }

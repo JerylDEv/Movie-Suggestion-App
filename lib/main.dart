@@ -34,10 +34,10 @@ class _AppState extends State<App> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Latest Movies'),
-          backgroundColor: Colors.blueAccent[700],
+          title: Text(
+            'Latest Movies',
+          ),
         ),
-        backgroundColor: Colors.blue[100],
         floatingActionButton: FloatingActionButton(
           onPressed: fetchMovieDetails,
           child: Icon(Icons.add),
