@@ -1,7 +1,8 @@
 class MovieModel {
+  int page;
   List<Result> results;
 
-  MovieModel({this.results});
+  MovieModel({this.results, this.page});
 
   factory MovieModel.fromJson(Map<String, dynamic> parsedJson) {
     var list = parsedJson['results'] as List;
@@ -13,11 +14,15 @@ class MovieModel {
 
 class Result {
   final String posterPath;
-  final String originalTitle;
+  final String title;
+  final String backdropPath;
+  final String rating;
 
-  Result({this.posterPath, this.originalTitle});
+  Result({this.posterPath, this.title, this.backdropPath, this.rating});
 
   Result.fromJson(Map<String, dynamic> json)
       : this.posterPath = json['poster_path'],
-        originalTitle = json['original_title'];
+        this.title = json['title'],
+        this.backdropPath = json['backdrop_path'],
+        this.rating = json['vote_average'].toString();
 }
