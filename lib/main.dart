@@ -11,6 +11,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  int counter = 0;
   // List of Movies
   List<MovieModel> movies = [];
 
@@ -24,7 +25,8 @@ class _AppState extends State<App> {
 
     setState(() {
       movies.add(movieModel);
-      print(movies);
+      print(movies[counter].results[counter].originalTitle);
+      counter++;
     });
   }
 
@@ -42,7 +44,7 @@ class _AppState extends State<App> {
           onPressed: fetchMovieDetails,
           child: Icon(Icons.add),
         ),
-        body: MovieList(movies),
+        body: Center(child: MovieList(movies)),
       ),
     );
   }
