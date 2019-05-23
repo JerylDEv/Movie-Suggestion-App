@@ -5,15 +5,15 @@ import 'package:flutter/widgets.dart';
 import '../models/movie_model.dart';
 import './vote_rating.dart';
 
-class MovieList extends StatelessWidget {
+class MovieSliverList extends StatelessWidget {
   final List<MovieModel> movies;
-  MovieList({this.movies});
+  MovieSliverList({this.movies});
 
   @override
   Widget build(BuildContext context) {
     double cardHeight;
     Orientation.portrait == MediaQuery.of(context).orientation
-        ? cardHeight = (MediaQuery.of(context).size.height * 1 / 2)
+        ? cardHeight = (MediaQuery.of(context).size.height * 1 / 3)
         : cardHeight = MediaQuery.of(context).size.height;
 
     return SliverList(
@@ -32,11 +32,12 @@ class MovieList extends StatelessWidget {
           ShaderMask(
               shaderCallback: (Rect rect) {
                 return LinearGradient(
-                  begin: Alignment.topCenter,
+                  begin: Alignment.center,
                   end: Alignment.bottomCenter,
                   colors: <Color>[Colors.transparent, Colors.black],
                 ).createShader(
-                    Rect.fromPoints(rect.topCenter, rect.bottomCenter));
+                  Rect.fromPoints(rect.topCenter, rect.bottomCenter),
+                );
               },
               blendMode: BlendMode.darken,
               child: Image.network(

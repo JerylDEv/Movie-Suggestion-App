@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:movie_list/widgets/movie_sliver_appbar.dart';
 import './models/movie_model.dart';
 import 'package:http/http.dart' show get;
 import 'dart:convert';
-import './widgets/movie_list.dart';
+import './widgets/movie_sliver_list.dart';
 
 void main() async {
   await SystemChrome.setEnabledSystemUIOverlays([]);
@@ -27,15 +28,17 @@ class _AppState extends State<App> {
     final response = await get(
         "https://api.themoviedb.org/3/movie/now_playing?api_key=dc2384bfb7f2daa90567c2d98e55f3ea");
     final movieModel = MovieModel.fromJson(json.decode(response.body));
-    int jsonListLength = movieModel.results.length;
-    print(jsonListLength);
 
     if (response.statusCode == 200) {
-      setState(() {
-        for (int counter = 0; counter < jsonListLength; counter++) {
-          movies.add(movieModel);
-        }
-      });
+      setState(
+        () {
+          for (int counter = 0;
+              counter < movieModel.results.length;
+              counter++) {
+            movies.add(movieModel);
+          }
+        },
+      );
     } else {
       throw Exception('Failed to load images.');
     }
@@ -66,11 +69,8 @@ class _AppState extends State<App> {
   Widget _buildScrollable(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverAppBar(
-          title: Text('Latest Movies'),
-          pinned: false,
-        ),
-        MovieList(movies: movies),
+        MovieSliverAppBar(),
+        MovieSliverList(movies: movies),
       ],
     );
   }
