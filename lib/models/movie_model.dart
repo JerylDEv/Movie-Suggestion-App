@@ -16,7 +16,7 @@ class Result {
   final String posterPath;
   final String title;
   final String backdropPath;
-  final String rating;
+  final double rating;
 
   Result({this.posterPath, this.title, this.backdropPath, this.rating});
 
@@ -24,5 +24,5 @@ class Result {
       : this.posterPath = json['poster_path'],
         this.title = json['title'],
         this.backdropPath = json['backdrop_path'],
-        this.rating = json['vote_average'].toString();
+        this.rating = json['vote_average'] / 2;
 }
