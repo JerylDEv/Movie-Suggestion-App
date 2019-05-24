@@ -27,8 +27,8 @@ class _AppState extends State<App> {
   void fetchMovieDetails() async {
     // Send Request for Top Rated
     // https://api.themoviedb.org/3/movie/top_rated?api_key=<<api_key>>&language=en-US&page=1
-    final response = await get(
-        "https://api.themoviedb.org/3/movie/now_playing?api_key=dc2384bfb7f2daa90567c2d98e55f3ea");
+    final response =
+        await get("https://api.themoviedb.org/3/movie/now_playing?api_key=");
     final movieModel = MovieModel.fromJson(json.decode(response.body));
 
     if (response.statusCode == 200) {
