@@ -13,7 +13,7 @@ class MovieSliverList extends StatelessWidget {
   Widget build(BuildContext context) {
     double cardHeight;
     Orientation.portrait == MediaQuery.of(context).orientation
-        ? cardHeight = (MediaQuery.of(context).size.height * 1 / 3)
+        ? cardHeight = (MediaQuery.of(context).size.height * 2 / 3)
         : cardHeight = MediaQuery.of(context).size.height;
 
     return SliverList(
@@ -27,45 +27,61 @@ class MovieSliverList extends StatelessWidget {
 
   Widget movieCard(Result movie, double height, double rating) {
     return Container(
+      decoration: BoxDecoration(
+        // color: Color.fromRGBO(8, 28, 36, 1),
+        color: Color.fromRGBO(8, 28, 36, 1),
+      ),
       child: Stack(
         children: <Widget>[
-          ShaderMask(
-              shaderCallback: (Rect rect) {
-                return LinearGradient(
-                  begin: Alignment.center,
-                  end: Alignment.bottomCenter,
-                  colors: <Color>[Colors.transparent, Colors.black],
-                ).createShader(
-                  Rect.fromPoints(rect.topCenter, rect.bottomCenter),
-                );
-              },
-              blendMode: BlendMode.darken,
-              child: Image.network(
-                "https://image.tmdb.org/t/p/w500" + movie.posterPath,
-                alignment: Alignment.topCenter,
-                fit: BoxFit.cover,
-                width: double.maxFinite,
-              )),
+          FadeInImage.assetNetwork(
+            placeholder: 'images/poweredby-tmdb-green.png',
+            fadeInDuration: const Duration(seconds: 1),
+            fadeOutDuration: const Duration(seconds: 1),
+            alignment: Alignment.topCenter,
+            fit: BoxFit.fitWidth,
+            width: double.maxFinite,
+            image: "https://image.tmdb.org/t/p/w500" + movie.posterPath,
+          ),
           Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  movie.title,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 20.0,
-                    fontFamily: "Raleway",
-                    color: Colors.white,
+                Container(
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
+                    ),
+                    // color: Color.fromRGBO(8, 28, 36, 1),
+                    color: Colors.black87,
                   ),
-                  overflow: TextOverflow.ellipsis,
+                  child: Text(
+                    movie.title,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20.0,
+                      fontFamily: "Raleway",
+                      color: Colors.white,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.only(bottom: 5.0),
                 ),
-                VoteRating(value: rating),
+                Container(
+                  child: VoteRating(value: rating),
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
+                    ),
+                    // color: Color.fromRGBO(8, 28, 36, 1),
+                    color: Colors.black87,
+                  ),
+                ),
               ],
             ),
           )

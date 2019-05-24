@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -20,6 +21,7 @@ class _AppState extends State<App> {
   // List of Movies
   List<MovieModel> movies = [];
   ScrollController _scrollController = new ScrollController();
+  // Loading Status
 
   // Fetch the Movie
   void fetchMovieDetails() async {
@@ -44,13 +46,11 @@ class _AppState extends State<App> {
     }
   }
 
-  @override
   void initState() {
     super.initState();
     fetchMovieDetails();
   }
 
-  @override
   void dispose() {
     _scrollController.dispose();
     super.dispose();
@@ -60,6 +60,9 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.deepOrange,
+      ),
       home: Scaffold(
         body: _buildScrollable(context),
       ),
@@ -67,11 +70,13 @@ class _AppState extends State<App> {
   }
 
   Widget _buildScrollable(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        MovieSliverAppBar(),
-        MovieSliverList(movies: movies),
-      ],
+    return SafeArea(
+      child: CustomScrollView(
+        slivers: [
+          MovieSliverAppBar(),
+          MovieSliverList(movies: movies),
+        ],
+      ),
     );
   }
 }

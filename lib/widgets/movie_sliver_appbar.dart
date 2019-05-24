@@ -6,17 +6,23 @@ class MovieSliverAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      pinned: false,
+      pinned: true,
       snap: false,
       floating: true,
       expandedHeight: 150,
-      backgroundColor: Color.fromRGBO(8, 28, 36, 1),
+      // backgroundColor: Color.fromRGBO(8, 28, 36, 1),
       flexibleSpace: FlexibleSpaceBar(
+        background: Image(
+          image: AssetImage('images/cinema.jpg'),
+          fit: BoxFit.cover,
+        ),
+        centerTitle: true,
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Latest Movies'),
+            Text('TMDB Latest Movies'),
             Padding(
-              padding: EdgeInsets.only(right: 10.0),
+              padding: EdgeInsets.only(right: 20.0),
             ),
             Icon(
               Icons.movie_filter,
@@ -26,18 +32,6 @@ class MovieSliverAppBar extends StatelessWidget {
         ),
         // background: Image.file(File('../images/poweredby-tmdb-green.png')),
       ),
-    );
-  }
-}
-
-class PoweredByTMDB extends StatelessWidget {
-  const PoweredByTMDB({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Image(
-      image: AssetImage('images/poweredby-tmdb-green (1).png'),
-      height: 200.0,
     );
   }
 }
