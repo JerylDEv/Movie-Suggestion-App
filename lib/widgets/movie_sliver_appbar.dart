@@ -8,9 +8,9 @@ class MovieSliverAppBar extends StatelessWidget {
     return SliverAppBar(
       pinned: true,
       snap: false,
-      floating: true,
-      expandedHeight: 150,
-      // backgroundColor: Color.fromRGBO(8, 28, 36, 1),
+      floating: false,
+      expandedHeight: 130,
+      backgroundColor: Color.fromRGBO(8, 28, 36, 1),
       flexibleSpace: FlexibleSpaceBar(
         background: Image(
           image: AssetImage('images/cinema.jpg'),
@@ -30,6 +30,7 @@ class MovieSliverAppBar extends StatelessWidget {
             ),
           ],
         ),
+
         // background: Image.file(File('../images/poweredby-tmdb-green.png')),
       ),
     );

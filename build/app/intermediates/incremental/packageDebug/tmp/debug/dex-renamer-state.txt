@@ -1,0 +1,4 @@
+#Thu Aug 08 14:04:08 CST 2019
+base.0=D\:\\Git_Repos\\Dart Projects\\Flutter\\movie_list\\build\\app\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex

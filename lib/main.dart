@@ -2,80 +2,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:movie_list/widgets/movie_sliver_appbar.dart';
-import './models/movie_model.dart';
-import 'package:http/http.dart' show get;
-import 'dart:convert';
-import './widgets/movie_sliver_list.dart';
+import 'package:movie_list/screens/splash_screen.dart';
 
 void main() async {
   await SystemChrome.setEnabledSystemUIOverlays([]);
   runApp(App());
 }
 
-class App extends StatefulWidget {
-  _AppState createState() => _AppState();
-}
-
-class _AppState extends State<App> {
-  // List of Movies
-  List<MovieModel> movies = [];
-  ScrollController _scrollController = new ScrollController();
-  // Loading Status
-
-  // Fetch the Movie
-  void fetchMovieDetails() async {
-    // Send Request for Top Rated
-    // https://api.themoviedb.org/3/movie/top_rated?api_key=<<api_key>>&language=en-US&page=1
-    final response =
-        await get("https://api.themoviedb.org/3/movie/now_playing?api_key=");
-    final movieModel = MovieModel.fromJson(json.decode(response.body));
-
-    if (response.statusCode == 200) {
-      setState(
-        () {
-          for (int counter = 0;
-              counter < movieModel.results.length;
-              counter++) {
-            movies.add(movieModel);
-          }
-        },
-      );
-    } else {
-      throw Exception('Failed to load images.');
-    }
-  }
-
-  void initState() {
-    super.initState();
-    fetchMovieDetails();
-  }
-
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
+class App extends StatelessWidget {
+  const App({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
-      ),
+          //primarySwatch: Colors.purple,
+          // primaryColor: Color.fromRGBO(1, 210, 119, 1),
+          primarySwatch: Colors.green
+          // primarySwatch: Colors.greenAccent[400],
+          ),
       home: Scaffold(
-        body: _buildScrollable(context),
-      ),
-    );
-  }
-
-  Widget _buildScrollable(BuildContext context) {
-    return SafeArea(
-      child: CustomScrollView(
-        slivers: [
-          MovieSliverAppBar(),
-          MovieSliverList(movies: movies),
-        ],
+        body: SafeArea(
+          child: SplashScreen(),
+        ),
       ),
     );
   }

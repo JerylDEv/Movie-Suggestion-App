@@ -45,10 +45,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - images/poweredby-tmdb-green.png
-   - images/poweredby-tmdb-green (1).png
    - images/cinema.jpg
-   - images/isLoading.gif
+   - images/poweredby-tmdb-green.png
   #  - images/a_dot_ham.jpeg
    
 
