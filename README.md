@@ -1,16 +1,10 @@
-# movie_list
+# My Movie Suggestion App
 
-A new Flutter project.
+This is a simple Movie Suggestion mobile application which I made using Flutter.
+It fetches data from the TMDB API. My goal in creating this application is to learn how to fetch data over an API.
 
-## Getting Started
+## How to download the APK?
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+You can install this application by downloading the APK inside the News-App/build/app/outputs/apk/ folder.
+You can do so by pasting this link on your browser:
+https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/JerylDEv/News-App/blob/master/build/app/outputs/apk/app.apk
